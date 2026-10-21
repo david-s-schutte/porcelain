@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/templates/game_objects/character_template.gd" type="Script" id=1]
+[ext_resource path="res://scenes/placeholder/tst_objects/tst_waypoint.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/models/placeholders/plh_monkey.obj" type="ArrayMesh" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+height = 0.001
+
+[node name="character_template" type="Spatial"]
+
+[node name="character" type="KinematicBody" parent="."]
+script = ExtResource( 1 )
+
+[node name="model" type="MeshInstance" parent="character"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+mesh = ExtResource( 3 )
+
+[node name="collision_shape" type="CollisionShape" parent="character"]
+shape = SubResource( 1 )
+
+[node name="waypoint" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4 )

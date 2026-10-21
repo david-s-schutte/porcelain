@@ -1,7 +1,7 @@
 extends Spatial
 
 
-var positions = Vector3(5, 2, 5)
+var positions = Vector3(15, 2, -15)
 
 export var wait_time = 5.0
 var delta_passed = 0
