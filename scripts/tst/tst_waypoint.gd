@@ -1,30 +1,19 @@
 extends Spatial
 
-
-var positions = Vector3(15, 2, -15)
-
 export var wait_time = 5.0
 var delta_passed = 0
-var current_pos_index = 0
-var position = Vector3(0, 2, 0)
 
-func randomise_positions():
-	for pos in positions:
-		print(pos)
-	delta_passed = 0
+func randomise_position(obj):
+	obj.global_transform.origin.x = rand_range(-5, 5)
+	obj.global_transform.origin.z = rand_range(-5, 5)
+	print(obj.global_transform.origin)
 
-# Called when the node enters the scene tree for the first time.
 func _ready():	
-	global_transform.origin = position
+	randomise_position(self)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	global_transform.origin = position
-	
-	if delta_passed < wait_time:
-		delta_passed += delta
-	else:
+func _physics_process(delta):
+	if delta_passed >= wait_time :
+		randomise_position(self)
 		delta_passed = 0
-		position = Vector3(rand_range(-5, 5), 2, rand_range(-5, 5))
-		global_transform.origin = position
+	else:
+		delta_passed += delta
